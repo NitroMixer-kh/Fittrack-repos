@@ -1,0 +1,38 @@
+article figure img {
+  border: solid 1px lightgrey;
+}
+
+#furo-languages {
+  position: relative;
+  display: inline-block;
+  font-size: var(--sidebar-item-font-size);
+  padding: 12px 16px;
+  border-top: solid 1px var(--color-sidebar-background-border);
+}
+
+#furo-languages:hover .languages-label {
+  display: none;
+}
+
+#furo-languages .languages-list {
+  display: none;
+  position: absolute;
+  background-color: var(--color-sidebar-item-background);
+  border-top: solid 1px var(--color-sidebar-background-border);
+  width: 100%;
+  z-index: 1;
+  left: 0;
+  bottom: 0;
+}
+#furo-languages .languages-list a {
+  display: block;
+  text-decoration: none;
+  padding: 12px 16px;
+  font-size: var(--sidebar-item-font-size);
+}
+#furo-languages:hover .languages-list {
+  display: block;
+}
+#furo-languages .languages-list a:hover {
+  background-color: var(--color-sidebar-item-background--hover);
+}

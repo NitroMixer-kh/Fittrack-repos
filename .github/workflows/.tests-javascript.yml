@@ -1,0 +1,36 @@
+name: Javascript CI
+
+on:
+  push:
+    paths: ['fittrackee_client/**']
+  pull_request:
+    paths: ['fittrackee_client/**']
+    types: [opened, synchronize, reopened]
+
+env:
+  working-directory: fittrackee_client
+
+jobs:
+  javascript:
+    if: ${{ github.event_name == 'push' || github.event.pull_request.head.repo.fork }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js 17.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: "17.x"
+      - name: Install yarn and dependencies
+        working-directory: ${{env.working-directory}}
+        run: |
+          npm install --global yarn
+          yarn install
+      - name: Lint
+        working-directory: ${{env.working-directory}}
+        run: yarn lint
+      - name: Tests
+        working-directory: ${{env.working-directory}}
+        run: yarn test:unit
+      - name: Build
+        working-directory: ${{env.working-directory}}
+        run: yarn build
